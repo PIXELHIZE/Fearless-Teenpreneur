@@ -1,69 +1,142 @@
-import Image from "next/image";
+const stages = [
+  {
+    number: "01",
+    title: "자료 조사",
+    body: "공식 자료와 공개된 실제 시험·예시 자료를 웹에서 찾아 출제 범위와 형식만 추출합니다.",
+  },
+  {
+    number: "02",
+    title: "문항 설계",
+    body: "별도 보기나 그림 없이 풀 수 있는 독창적 개념 5지선다를 만들고 난이도를 배분합니다.",
+  },
+  {
+    number: "03",
+    title: "독립 검증",
+    body: "별도 검증 단계가 정답과 오답을 다시 검색합니다. 근거가 약한 문항은 수정하거나 버립니다.",
+  },
+  {
+    number: "04",
+    title: "JSON 분리 저장",
+    body: "문제와 간단한 출처는 문제 JSON에, 정답과 설명은 해설 JSON에 나누어 저장합니다.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="shell">
+      <header className="topbar">
+        <a className="brand" href="#top" aria-label="Study Exam Generator 홈">
+          <span className="brand-mark">S</span>
+          <span>Study Exam Generator</span>
+        </a>
+        <div className="status">
+          <span className="status-dot" />
+          CLI first · Next.js 16
+        </div>
+      </header>
+
+      <section className="hero" id="top">
+        <div className="eyebrow">EVIDENCE-GROUNDED ASSESSMENT</div>
+        <h1>
+          공부할 내용을 말하면,
+          <br />
+          <span>검증된 시험지</span>로 바꿉니다.
+        </h1>
+        <p className="hero-copy">
+          자연어 한 줄을 출제 조건으로 삼아 AI가 새로운 5지선다 문제를 직접
+          만듭니다. 현재는 그림·표·별도 보기 없이 풀 수 있는 수능형 개념 문제만
+          생성합니다.
+        </p>
+
+        <div className="terminal" aria-label="터미널 사용 예시">
+          <div className="terminal-bar">
+            <div className="lights" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </div>
+            <span>Terminal</span>
+            <span className="terminal-state">ready</span>
+          </div>
+          <div className="terminal-body">
+            <span className="prompt">$</span>
+            <code>
+              npm run exam -- &quot;고등학교 생명과학 세포 호흡을 수능형
+              중상 난도로 10문제&quot;
+            </code>
+          </div>
+          <div className="terminal-output">
+            <span>◆</span> 입력 조건을 분석하고 수능형 개념 문항을 설계합니다.
+            <br />
+            <span>◆</span> AI가 새 문항을 만든 뒤 사실과 정답을 웹에서 검증합니다.
+          </div>
+        </div>
+      </section>
+
+      <section className="proof-strip" aria-label="핵심 기능">
+        <div>
+          <strong>5</strong>
+          <span>모든 문항의 선택지</span>
+        </div>
+        <div>
+          <strong>2×</strong>
+          <span>조사와 검증의 분리</span>
+        </div>
+        <div>
+          <strong>2</strong>
+          <span>문제·해설 JSON 파일</span>
+        </div>
+      </section>
+
+      <section className="process" id="process">
+        <div className="section-heading">
+          <div>
+            <p>검증 파이프라인</p>
+            <h2>그럴듯함보다 근거를 먼저 봅니다.</h2>
+          </div>
+          <p className="section-copy">
+            모델의 자기평가만 믿지 않습니다. 웹 검색 결과의 URL과 모델이 제시한
+            출처를 코드에서 다시 대조합니다.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="stage-grid">
+          {stages.map((stage) => (
+            <article className="stage-card" key={stage.number}>
+              <span>{stage.number}</span>
+              <h3>{stage.title}</h3>
+              <p>{stage.body}</p>
+            </article>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="outputs">
+        <div className="output-copy">
+          <p className="kicker">SEPARATED JSON OUTPUT</p>
+          <h2>풀 문제와 볼 해설을 분리해서.</h2>
+          <p>
+            문제 JSON에는 발문, 5개 선지와 간단한 출처만 담습니다. 해설 JSON에는
+            정답, 설명, 학습 목표와 검증 신뢰도를 문항 번호로 연결합니다.
+          </p>
+        </div>
+        <div className="file-stack" aria-label="생성 파일 목록">
+          <div>
+            <span>JSON</span>
+            <strong>날짜-주제-questions.json</strong>
+            <small>맞춤형 문제 · 5개 선지 · 간단한 출처</small>
+          </div>
+          <div>
+            <span>JSON</span>
+            <strong>날짜-주제-explanations.json</strong>
+            <small>정답 · 해설 · 학습 목표 · 신뢰도</small>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <span>Study Exam Generator</span>
+        <span>Human review is still recommended for high-stakes use.</span>
+      </footer>
+    </main>
   );
 }
