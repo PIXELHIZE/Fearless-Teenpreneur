@@ -1,0 +1,94 @@
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #111113;
+  --card: #ffffff;
+  --card-foreground: #111113;
+  --popover: #ffffff;
+  --popover-foreground: #111113;
+  --primary: #111113;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f7;
+  --secondary-foreground: #111113;
+  --muted: #f5f5f7;
+  --muted-foreground: #65656f;
+  --accent: #eef2ff;
+  --accent-foreground: #2449ce;
+  --brand: #315eff;
+  --brand-foreground: #ffffff;
+  --brand-hover: #2449ce;
+  --destructive: #111113;
+  --border: #e5e5e9;
+  --input: #85858f;
+  --ring: #315eff;
+  --radius: .75rem;
+  --radius-control: .75rem;
+  --radius-surface: 1rem;
+  --radius-overlay: 1.5rem;
+  --radius-pill: 999px;
+  --overlay-scrim: rgb(17 17 19 / 36%);
+  --overlay-padding: 1.5rem;
+  --switch-off: #73737e;
+  --switch-thumb: #ffffff;
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --font-ui: "Pretendard Variable", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+  --text-display: 3rem;
+  --text-title: 1.75rem;
+  --text-section: 1.25rem;
+  --text-body: 1rem;
+  --text-support: .875rem;
+  --text-caption: .75rem;
+  --leading-body: 1.625;
+  --size-touch: 3rem;
+  --size-primary-mobile: 3.25rem;
+  --page-gutter: 1.25rem;
+  --motion-press: 120ms;
+  --motion-state: 180ms;
+  --motion-reveal: 240ms;
+  --motion-surface: 280ms;
+  --motion-sheet-enter: 420ms;
+  --motion-sheet-exit: 300ms;
+  --easing-sheet: cubic-bezier(.22, 1, .36, 1);
+  --motion-flip: 360ms;
+  --easing-standard: cubic-bezier(.2, 0, 0, 1);
+  --shadow-overlay: 0 16px 64px rgb(17 17 19 / 12%);
+}
+.dark {
+  color-scheme: dark;
+  --background: #101012;
+  --foreground: #fafafa;
+  --card: #19191c;
+  --card-foreground: #fafafa;
+  --popover: #19191c;
+  --popover-foreground: #fafafa;
+  --primary: #fafafa;
+  --primary-foreground: #111113;
+  --secondary: #232326;
+  --secondary-foreground: #fafafa;
+  --muted: #232326;
+  --muted-foreground: #aaaab4;
+  --accent: #202945;
+  --accent-foreground: #a7b8ff;
+  --brand: #94aaff;
+  --brand-foreground: #101012;
+  --brand-hover: #b4c3ff;
+  --destructive: #fafafa;
+  --border: #34343a;
+  --input: #858590;
+  --ring: #94aaff;
+  --overlay-scrim: rgb(0 0 0 / 60%);
+  --switch-off: #65656f;
+  --shadow-overlay: 0 16px 64px rgb(0 0 0 / 35%);
+}
+@media (max-width: 359px) { :root { --page-gutter: 1rem; } }
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-press: 0ms; --motion-state: 0ms; --motion-reveal: 0ms; --motion-surface: 0ms; --motion-sheet-enter: 0ms; --motion-sheet-exit: 0ms; --motion-flip: 0ms; }
+}
