@@ -19,6 +19,8 @@ const TRUSTED_EXACT_HOSTS = new Set([
   "www.unesco.org",
   "oecd.org",
   "www.oecd.org",
+  "korea.net",
+  "www.korea.net",
 ]);
 
 const TRUSTED_SUFFIXES = [
@@ -35,7 +37,14 @@ export function normalizeUrl(value: string): string | null {
   try {
     const url = new URL(value.trim());
     if (url.protocol !== "https:" && url.protocol !== "http:") return null;
+    if (url.username || url.password || url.port) return null;
     url.hash = "";
+    for (const key of [...url.searchParams.keys()]) {
+      if (/^utm_/i.test(key) || ["gclid", "fbclid"].includes(key)) {
+        url.searchParams.delete(key);
+      }
+    }
+    url.searchParams.sort();
     url.hostname = url.hostname.toLowerCase();
     if (url.pathname !== "/") url.pathname = url.pathname.replace(/\/$/, "");
     return url.toString();
@@ -57,20 +66,12 @@ export function isTrustedHost(value: string): boolean {
 function equivalentSearchUrl(sourceUrl: string, searchedUrls: Set<string>): boolean {
   const normalized = normalizeUrl(sourceUrl);
   if (!normalized) return false;
-  if (searchedUrls.has(normalized)) return true;
+  return searchedUrls.has(normalized);
+}
 
-  const candidate = new URL(normalized);
-  for (const searched of searchedUrls) {
-    const found = new URL(searched);
-    if (
-      found.hostname === candidate.hostname &&
-      (found.pathname.startsWith(candidate.pathname) ||
-        candidate.pathname.startsWith(found.pathname))
-    ) {
-      return true;
-    }
-  }
-  return false;
+export function isUsableSource(source: AuditedSource): boolean {
+  return source.searchedByTool && source.trustedDomain && source.https &&
+    source.verifiedClaims.some((claim) => claim.trim().length > 0);
 }
 
 export function scoreSource(
@@ -114,7 +115,15 @@ export function auditSources(
       .map(normalizeUrl)
       .filter((url): url is string => Boolean(url)),
   );
-  return sources.map((source) => scoreSource(source, normalizedSearched));
+  // Conflicting identifiers cannot safely support evidenceClaims.
+  const seenUrls = new Set<string>();
+  return sources.filter((source) =>
+    source.id.trim() && sources.filter((other) => other.id === source.id).length === 1,
+  ).map((source) => scoreSource(source, normalizedSearched)).filter((source) => {
+    if (!source.normalizedUrl || seenUrls.has(source.normalizedUrl)) return false;
+    seenUrls.add(source.normalizedUrl);
+    return true;
+  });
 }
 
 export function sourceUrlWasSearched(url: string, searchedUrls: string[]): boolean {

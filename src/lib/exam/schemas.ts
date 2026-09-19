@@ -70,6 +70,12 @@ export const verificationItemSchema = z.object({
   revisedCorrectChoiceIndex: z.number().int().min(0).max(4),
   revisedExplanation: z.string(),
   factualFindings: z.array(z.string()),
+  choiceChecks: z.array(z.object({
+    choiceIndex: z.number().int().min(0).max(4),
+    isCorrect: z.boolean(),
+    reason: z.string().min(1),
+    sourceUrls: z.array(z.string()),
+  })).length(5),
   supportedBySourceUrls: z.array(z.string()),
   conflictingSourceUrls: z.array(z.string()),
   confidence: z.number().min(0).max(1),
@@ -105,6 +111,7 @@ export type VerifiedQuestion = DraftQuestion & {
     sourceUrls: string[];
     conflictingSourceUrls: string[];
     deterministicChecks: string[];
+    choiceChecks: VerificationItem["choiceChecks"];
   };
 };
 

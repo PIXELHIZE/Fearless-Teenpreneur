@@ -67,6 +67,7 @@ const exam: FinalExam = {
         sourceUrls: ["https://example.edu/cell-respiration"],
         conflictingSourceUrls: [],
         deterministicChecks: ["5개 선지 확인"],
+        choiceChecks: [],
       },
     },
   ],
@@ -111,6 +112,9 @@ test("해설 파일에는 정답과 설명을 문항 번호로 연결한다", ()
     explanation: "자료의 조건에 따르면 셋째가 정답이다.",
     learningObjective: "세포 호흡 자료를 분석한다.",
     verificationConfidence: 0.97,
+    verifiedSourceUrls: exam.questions[0].verification.sourceUrls,
+    choiceChecks: [],
+    evidenceClaims: exam.questions[0].evidenceClaims,
     sourceIds: ["S1"],
   });
 });

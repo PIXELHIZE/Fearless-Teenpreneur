@@ -1,0 +1,155 @@
+{
+  "generatedAt": "2026-09-19T08:16:11.157Z",
+  "userRequest": "고등학교 화법과 언어 문제를 중상 난이도로 만들어줘",
+  "title": "고등학교 「화법과 언어」 중상 난도 2문항 출제를 위한 조사 — 정답 및 해설",
+  "answers": [
+    {
+      "id": 1,
+      "domain": "화법",
+      "correctChoice": 2,
+      "explanation": "정답은 ②이다. 사회자는 참여자들의 의견과 회의에서 확인된 조건을 종합하여 논의를 진전시켜야 한다. ②는 민지의 정보 무늬 제안으로 접근성 문제를 해결하면서, 준호가 제기한 익명성 보장 설명을 보완하고, 추가 예산을 쓸 수 없다는 제약도 준수한다. 반면 ①은 익명성 문제를 다루지 않은 채 성급하게 결론을 내리고, ③은 명시된 예산 제약을 무시한다. ④는 의견을 반복하게 할 뿐 조정이나 문제 해결에 기여하지 않으며, ⑤는 이미 대안을 검토할 정보가 있는데도 의사 결정을 불필요하게 미룬다.",
+      "learningObjective": "회의 참여자의 발언 기능과 관계를 파악하고, 논의의 목적과 제약 조건을 반영한 사회자의 발언을 판단한다.",
+      "verificationConfidence": 0.96,
+      "verifiedSourceUrls": [
+        "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&search=",
+        "https://www.goe.go.kr/resource/goe/na/bbs_2675/2025/12/f54a3f12-2fbe-4fba-9013-646df1a199a9.pdf"
+      ],
+      "choiceChecks": [
+        {
+          "choiceIndex": 0,
+          "isCorrect": false,
+          "reason": "접근성에 관한 민지의 제안만 채택하고 준호가 지적한 익명성 보장 문제를 다루지 않는다. 또한 여러 의견과 제약을 종합하지 않고 회의를 즉시 끝내므로 협력적인 문제 해결을 이끄는 사회자의 발언으로 적절하지 않다.",
+          "sourceUrls": [
+            "https://www.goe.go.kr/resource/goe/na/bbs_2675/2025/12/f54a3f12-2fbe-4fba-9013-646df1a199a9.pdf"
+          ]
+        },
+        {
+          "choiceIndex": 1,
+          "isCorrect": true,
+          "reason": "정보 무늬를 통한 접근성 개선, 익명성 보장 방법의 설명, 추가 예산을 사용할 수 없다는 조건을 모두 종합한다. 쟁점을 정리하고 실행 가능한 보완 사항에 관한 후속 논의를 제시하므로 가장 적절하다.",
+          "sourceUrls": [
+            "https://www.goe.go.kr/resource/goe/na/bbs_2675/2025/12/f54a3f12-2fbe-4fba-9013-646df1a199a9.pdf",
+            "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&search="
+          ]
+        },
+        {
+          "choiceIndex": 2,
+          "isCorrect": false,
+          "reason": "상품 제공은 추가 비용이 필요한데 총무가 추가 예산을 사용할 수 없다고 명시했다. 확인된 제약을 무시하고 먼저 채택하는 것은 실현 가능한 대안을 종합·조정하는 발언이 아니다.",
+          "sourceUrls": [
+            "https://www.goe.go.kr/resource/goe/na/bbs_2675/2025/12/f54a3f12-2fbe-4fba-9013-646df1a199a9.pdf"
+          ]
+        },
+        {
+          "choiceIndex": 3,
+          "isCorrect": false,
+          "reason": "기존 주장을 같은 내용으로 반복하게 하는 것은 접근성, 익명성, 예산 문제 사이의 관계를 분석하거나 대안을 조정하는 데 기여하지 않는다. 사회자는 단순 반복보다 쟁점을 정리하고 논의를 진전시켜야 한다.",
+          "sourceUrls": [
+            "https://www.goe.go.kr/resource/goe/na/bbs_2675/2025/12/f54a3f12-2fbe-4fba-9013-646df1a199a9.pdf"
+          ]
+        },
+        {
+          "choiceIndex": 4,
+          "isCorrect": false,
+          "reason": "조사 결과와 회의 발언을 통해 이용률 저하의 원인 및 대안의 조건이 이미 제시되었다. 서로 다른 원인이 있다는 사실은 대안을 종합할 근거이지 모든 판단을 미뤄야 할 근거가 아니다.",
+          "sourceUrls": [
+            "https://www.goe.go.kr/resource/goe/na/bbs_2675/2025/12/f54a3f12-2fbe-4fba-9013-646df1a199a9.pdf"
+          ]
+        }
+      ],
+      "evidenceClaims": [
+        {
+          "claim": "2022 개정 교육과정에서 국어과 교육과정은 별책 5로 제시되어 있으며, 이를 교과 범위의 근거로 삼아 화법 영역의 개념 적용 문항을 구성하였다.",
+          "sourceIds": [
+            "S1"
+          ]
+        }
+      ],
+      "sourceIds": [
+        "S1"
+      ]
+    },
+    {
+      "id": 2,
+      "domain": "언어",
+      "correctChoice": 4,
+      "explanation": "직접 인용은 원래 발화를 그대로 옮기므로 ‘나는 이곳에서 기다리겠다.’를 바꾸지 않고 큰따옴표와 직접 인용 조사 ‘라고’를 사용해야 한다. 간접 인용은 인용자가 자신의 관점에서 원문의 뜻을 전달하므로 태호 자신을 가리키는 ‘나는’은 ‘자신은’으로, 태호가 발화한 대기실을 가리키는 ‘이곳’은 다른 장소에 있는 인용자의 관점에서 ‘그곳’으로 바뀐다. 또한 따옴표를 쓰지 않고 평서형 어미 ‘-다’와 간접 인용 조사 ‘고’가 결합한 ‘-다고’를 사용한다. 따라서 정답은 ④이다.",
+      "learningObjective": "직접 인용과 간접 인용의 형식적 표지 및 인칭·장소 표현의 관점 변화를 종합적으로 판별할 수 있다.",
+      "verificationConfidence": 0.99,
+      "verifiedSourceUrls": [
+        "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=216&pageIndex=1&qna_seq=331890",
+        "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=&pageIndex=1&qna_seq=331333",
+        "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=216&pageIndex=1&qna_seq=309857",
+        "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=27&pageIndex=1&qna_seq=333731",
+        "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=27&pageIndex=1&qna_seq=330073",
+        "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=0404&opType=N&page=1&s=moe&searchType=null&statusYN=W"
+      ],
+      "choiceChecks": [
+        {
+          "choiceIndex": 0,
+          "isCorrect": false,
+          "reason": "직접 인용 부분이 원래 발화의 ‘나는 이곳’을 ‘자신은 그곳’으로 변경했으므로 원문을 그대로 옮긴 직접 인용이 아니다. 간접 인용 부분도 원문을 큰따옴표 안에 그대로 제시하고 ‘라고’를 사용했으므로 실제로는 직접 인용 형식이다.",
+          "sourceUrls": [
+            "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=216&pageIndex=1&qna_seq=331890",
+            "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=&pageIndex=1&qna_seq=331333"
+          ]
+        },
+        {
+          "choiceIndex": 1,
+          "isCorrect": false,
+          "reason": "간접 인용 부분은 관점에 맞게 ‘자신은 그곳’으로 바꾸고 ‘-겠다고’를 사용하여 적절하다. 그러나 직접 인용 부분은 큰따옴표 뒤에 간접 인용 조사 ‘고’를 사용했다. 국립국어원 기준에 따르면 원문을 따옴표로 그대로 인용하는 구조에는 ‘라고’를 쓰는 것이 적절하므로 전체 짝은 오답이다.",
+          "sourceUrls": [
+            "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=216&pageIndex=1&qna_seq=309857",
+            "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=216&pageIndex=1&qna_seq=331890"
+          ]
+        },
+        {
+          "choiceIndex": 2,
+          "isCorrect": false,
+          "reason": "직접 인용 부분은 원문과 ‘라고’를 올바르게 사용했다. 하지만 인용자가 대기실을 떠나 다른 장소에서 말한다는 조건에서 간접 인용문의 ‘이곳’은 현재 인용자가 있는 장소를 가리키게 되어 원래 의미가 달라진다. 원래 발화 장소인 대기실을 가리키려면 ‘그곳’으로 바꾸어야 한다.",
+          "sourceUrls": [
+            "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=27&pageIndex=1&qna_seq=333731",
+            "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=27&pageIndex=1&qna_seq=330073"
+          ]
+        },
+        {
+          "choiceIndex": 3,
+          "isCorrect": true,
+          "reason": "직접 인용은 ‘나는 이곳에서 기다리겠다.’라는 원래 발화를 그대로 유지하고 ‘라고’를 사용했다. 간접 인용은 태호를 가리키는 ‘나’를 ‘자신’으로, 현재 인용 장소와 떨어진 원래 발화 장소를 가리키도록 ‘이곳’을 ‘그곳’으로 바꾸었으며, 따옴표 없이 ‘-겠다고’를 사용했다. 두 인용문 모두 발문의 조건을 충족한다.",
+          "sourceUrls": [
+            "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=216&pageIndex=1&qna_seq=331890",
+            "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=&pageIndex=1&qna_seq=331333",
+            "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=27&pageIndex=1&qna_seq=333731"
+          ]
+        },
+        {
+          "choiceIndex": 4,
+          "isCorrect": false,
+          "reason": "간접 인용 부분은 적절하지만, 직접 인용 부분이 원래 발화의 ‘나는 이곳’을 ‘자신은 그곳’으로 바꾸었다. 직접 인용은 원문의 문장을 그대로 가져와야 하므로 전체 짝은 오답이다.",
+          "sourceUrls": [
+            "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=216&pageIndex=1&qna_seq=331890",
+            "https://www.korean.go.kr/front/onlineQna/onlineQnaView.do?mn_id=&pageIndex=1&qna_seq=331333"
+          ]
+        }
+      ],
+      "evidenceClaims": [
+        {
+          "claim": "직접 인용은 원래 발화를 그대로 옮기고 인용 부분에 따옴표를 사용하며 직접 인용 조사 ‘라고’를 사용할 수 있다.",
+          "sourceIds": [
+            "S5"
+          ]
+        },
+        {
+          "claim": "간접 인용에서는 따옴표를 사용하지 않으며 대명사 등의 표현이 인용하는 화자의 관점에 따라 바뀔 수 있다.",
+          "sourceIds": [
+            "S5"
+          ]
+        }
+      ],
+      "sourceIds": [
+        "S5"
+      ]
+    }
+  ],
+  "verificationSummary": "2개 문항을 교육부·교육청의 2022 개정 국어과 교육과정 원문과 국립국어원 자료로 재검증했다. 두 문항 모두 지정 영역과 실제 평가 내용이 일치하고, 별도 자료 없이 해결 가능하며, 정답이 하나로 확정된다. 특징적 문구 검색에서도 기존 문항을 복제한 흔적은 확인되지 않았다. 따라서 문항 1과 문항 2를 모두 승인한다. 제공된 1개 문항은 ‘언어’ 영역을 실제로 평가하며, 간접 인용에 따른 인칭·시간 지시 표현의 조정과 높임 표현을 복합적으로 묻는 중상 난도 문항으로 성립한다. 정답은 ②로 유일하다. 다만 전체 출제 요구 기준으로는 ‘화법’ 문항이 제공되지 않아 화법 1문항·언어 1문항이라는 구성 요건은 아직 충족되지 않았다. 제출된 언어 영역 1문항은 직접·간접 인용의 차이와 관점에 따른 지시 표현의 변화를 복합적으로 평가하며, 정답이 하나로 확정되어 승인했다. 다만 전체 출제 요구인 화법 1문항·언어 1문항 중 화법 문항이 제출되지 않아 세트 단위의 영역 배분 요건은 충족되지 않았다. 초안 중 2개는 기준 미달로 제외되었고 2개만 채택되었습니다. 최종 영역 배분: 화법 1개, 언어 1개."
+}
