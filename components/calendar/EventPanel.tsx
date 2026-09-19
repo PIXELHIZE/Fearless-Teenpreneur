@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { CalendarInfo, COLORS, EventItem } from "@/lib/types";
+import { CalendarInfo, EventItem } from "@/lib/types";
+import { dotStyle } from "@/lib/color";
 import { hhmmToMin, minToHHMM } from "@/lib/date";
 
 interface Props {
@@ -67,7 +68,10 @@ export default function EventPanel({
                     : "border-border text-gray-500 hover:bg-gray-50"
                 }`}
               >
-                <span className={`h-2 w-2 rounded-full ${COLORS[c.color].dot}`} />
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={dotStyle(c.color)}
+                />
                 {c.name}
               </button>
             ))}

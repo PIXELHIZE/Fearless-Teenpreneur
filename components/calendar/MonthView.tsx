@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { CalendarInfo, COLORS, EventItem } from "@/lib/types";
+import { CalendarInfo, EventItem, FALLBACK_COLOR } from "@/lib/types";
+import { chipStyle } from "@/lib/color";
 import { minToHHMM, monthGrid, toDateStr, todayStr } from "@/lib/date";
 
 interface Props {
@@ -103,7 +104,7 @@ export default function MonthView({
 
               {items.slice(0, MAX).map((ev) => {
                 const cal = calendarMap.get(ev.calendarId);
-                const color = COLORS[cal?.color ?? "slate"];
+                const hex = cal?.color ?? FALLBACK_COLOR;
                 const isSel = ev.id === selectedId;
                 const isChecked = checkedIds.has(ev.id);
                 return (
@@ -124,13 +125,14 @@ export default function MonthView({
                       e.stopPropagation();
                       onToggleCheck(ev.id);
                     }}
-                    className={`flex w-full cursor-grab items-center gap-1 truncate rounded border-l-2 px-1 text-left text-[10px] leading-4 ${color.chip} ${
+                    className={`flex w-full cursor-grab items-center gap-1 truncate rounded border-l-2 px-1 text-left text-[10px] leading-4 ${
                       isChecked
                         ? "ring-2 ring-rose-600"
                         : isSel
                           ? "ring-1 ring-gray-500"
                           : ""
                     }`}
+                    style={chipStyle(hex)}
                     title={`${minToHHMM(ev.startMin)} ${ev.title}`}
                   >
                     {isChecked && (

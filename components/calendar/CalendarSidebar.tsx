@@ -3,15 +3,16 @@
 import { useState } from "react";
 import {
   CalendarInfo,
-  ColorKey,
-  COLORS,
+  DEFAULT_NEW_COLOR,
   EventItem,
   PROTECTED_CALENDAR_ID,
   RESERVED_COLOR,
-  SELECTABLE_COLORS,
+  SELECTABLE_PRESETS,
 } from "@/lib/types";
+import { dotStyle, isTooSimilar } from "@/lib/color";
 import { uid } from "@/lib/storage";
 import MiniCalendar from "./MiniCalendar";
+import ColorPicker from "./ColorPicker";
 
 interface Props {
   focus: string;
@@ -32,22 +33,25 @@ export default function CalendarSidebar({
 }: Props) {
   const [adding, setAdding] = useState(false);
   const [newName, setNewName] = useState("");
-  const [newColor, setNewColor] = useState<ColorKey>("sky");
+  const [newColor, setNewColor] = useState(DEFAULT_NEW_COLOR);
   const [notifPermission, setNotifPermission] = useState<string>(
     typeof Notification !== "undefined" ? Notification.permission : "unsupported",
   );
 
   const eventDates = new Set(events.map((e) => e.date));
 
+  // 예약 색은 "공부 가능 시간" 전용 — 눈으로 구분되지 않는 근처 색까지 막는다
+  const colorBlocked = isTooSimilar(newColor, RESERVED_COLOR);
+  const canAdd = newName.trim().length > 0 && !colorBlocked;
+
   const addCalendar = () => {
-    if (!newName.trim()) return;
-    // 예약 색은 "공부 가능 시간" 전용 — 어떤 경로로도 새 캘린더에 들어가지 않는다
-    const color = newColor === RESERVED_COLOR ? "sky" : newColor;
+    if (!canAdd) return;
     setCalendars((prev) => [
       ...prev,
-      { id: uid(), name: newName.trim(), color, visible: true },
+      { id: uid(), name: newName.trim(), color: newColor, visible: true },
     ]);
     setNewName("");
+    setNewColor(DEFAULT_NEW_COLOR);
     setAdding(false);
   };
 
@@ -96,25 +100,31 @@ export default function CalendarSidebar({
               autoFocus
               className="rounded-md border border-border bg-white px-2 py-1.5 text-xs outline-none focus:ring-2 focus:ring-primary"
             />
-            <div className="flex flex-wrap gap-1.5">
-              {SELECTABLE_COLORS.map((c) => (
-                <button
-                  key={c}
-                  onClick={() => setNewColor(c)}
-                  className={`h-5 w-5 rounded-full ${COLORS[c].swatch} ${
-                    newColor === c ? "ring-2 ring-gray-800 ring-offset-1" : ""
-                  }`}
-                  aria-label={COLORS[c].name}
+            <ColorPicker
+              value={newColor}
+              onChange={setNewColor}
+              presets={SELECTABLE_PRESETS}
+            />
+            {colorBlocked ? (
+              <p className="flex items-start gap-1 text-[10px] leading-snug text-rose-600">
+                <span
+                  className="mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full"
+                  style={dotStyle(RESERVED_COLOR)}
                 />
-              ))}
-            </div>
-            <p className="text-[10px] leading-snug text-gray-400">
-              {COLORS[RESERVED_COLOR].name} 색은 &ldquo;공부 가능 시간&rdquo;
-              전용입니다.
-            </p>
+                <span>
+                  이 색은 &ldquo;공부 가능 시간&rdquo; 전용입니다. 다른 색을
+                  골라 주세요.
+                </span>
+              </p>
+            ) : (
+              <p className="text-[10px] leading-snug text-gray-400">
+                휠을 끌어 색을, 옆 바로 밝기를 조절하거나 RGB · hex 값을 직접
+                입력할 수 있습니다.
+              </p>
+            )}
             <button
               onClick={addCalendar}
-              disabled={!newName.trim()}
+              disabled={!canAdd}
               className="rounded-md bg-primary py-1.5 text-xs font-semibold text-white disabled:opacity-40"
             >
               추가
@@ -134,10 +144,9 @@ export default function CalendarSidebar({
                 <button
                   onClick={() => toggleVisible(c.id)}
                   className={`h-3.5 w-3.5 shrink-0 rounded ${
-                    c.visible
-                      ? COLORS[c.color].dot
-                      : "border-2 border-gray-300 bg-transparent"
+                    c.visible ? "" : "border-2 border-gray-300 bg-transparent"
                   }`}
+                  style={c.visible ? dotStyle(c.color) : undefined}
                   aria-label={c.visible ? "숨기기" : "표시하기"}
                 />
                 <span

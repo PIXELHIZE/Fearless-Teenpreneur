@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { CalendarInfo, COLORS, EventItem } from "@/lib/types";
+import { CalendarInfo, EventItem, FALLBACK_COLOR } from "@/lib/types";
+import { blockStyle } from "@/lib/color";
 import { minToHHMM, toDateStr, todayStr, WEEKDAYS_KO } from "@/lib/date";
 
 const HOUR_PX = 48;
@@ -265,7 +266,7 @@ export default function WeekView({
               const laid = assignLanes(dayEvents);
               return laid.map(({ ev, lane, lanes }) => {
                 const cal = calendarMap.get(ev.calendarId);
-                const color = COLORS[cal?.color ?? "slate"];
+                const hex = cal?.color ?? FALLBACK_COLOR;
                 const top = (ev.startMin / 60) * HOUR_PX;
                 const height = Math.max(
                   18,
@@ -279,7 +280,7 @@ export default function WeekView({
                 return (
                   <div
                     key={ev.id}
-                    className={`absolute cursor-grab overflow-hidden rounded-md px-1.5 py-0.5 text-white shadow-sm transition-shadow ${color.block} ${
+                    className={`absolute cursor-grab overflow-hidden rounded-md px-1.5 py-0.5 shadow-sm transition-shadow hover:brightness-95 ${
                       isChecked
                         ? "ring-2 ring-rose-600 ring-offset-1"
                         : isSel
@@ -287,6 +288,7 @@ export default function WeekView({
                           : ""
                     } ${isDragging ? "opacity-80 shadow-lg" : ""}`}
                     style={{
+                      ...blockStyle(hex),
                       top,
                       height,
                       left: `calc(${dayLeft + lane * laneW}% + 2px)`,
