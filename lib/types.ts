@@ -83,11 +83,57 @@ export interface CalendarInfo {
   visible: boolean;
 }
 
+/** 목록 맨 위에 고정되고 삭제할 수 없는 캘린더 */
+export const PROTECTED_CALENDAR_ID = "cal-avail";
+
+/** 보호 캘린더 전용 색 — 다른 캘린더는 쓸 수 없다 */
+export const RESERVED_COLOR: ColorKey = "emerald";
+
+/** 예약 색을 제외한, 사용자가 고를 수 있는 색 */
+export const SELECTABLE_COLORS = (Object.keys(COLORS) as ColorKey[]).filter(
+  (c) => c !== RESERVED_COLOR,
+);
+
+const PROTECTED_DEFAULT: CalendarInfo = {
+  id: PROTECTED_CALENDAR_ID,
+  name: "공부 가능 시간",
+  color: RESERVED_COLOR,
+  visible: true,
+};
+
 export const DEFAULT_CALENDARS: CalendarInfo[] = [
+  PROTECTED_DEFAULT,
   { id: "cal-study", name: "공부", color: "indigo", visible: true },
   { id: "cal-personal", name: "개인", color: "orange", visible: true },
-  { id: "cal-avail", name: "공부 가능 시간", color: "emerald", visible: true },
 ];
+
+/**
+ * 캘린더 목록의 불변 규칙을 강제한다. 저장·표시 양쪽에서 통과시키므로
+ * 어느 경로로 목록이 바뀌어도 아래 세 조건이 항상 성립한다.
+ *  1. 보호 캘린더가 없으면 복원하고 항상 맨 위에 둔다 (= 삭제 불가)
+ *  2. 보호 캘린더의 색은 예약 색으로 고정한다
+ *  3. 예약 색을 쓰고 있는 다른 캘린더는 비어 있는 색으로 옮긴다
+ */
+export function normalizeCalendars(list: CalendarInfo[]): CalendarInfo[] {
+  const found = list.find((c) => c.id === PROTECTED_CALENDAR_ID);
+  const pinned: CalendarInfo = found
+    ? { ...found, color: RESERVED_COLOR }
+    : PROTECTED_DEFAULT;
+
+  const others = list.filter((c) => c.id !== PROTECTED_CALENDAR_ID);
+  // 이미 쓰이는 색을 먼저 채워 두고, 남은 색에서 대체 색을 고른다
+  const used = new Set<ColorKey>(
+    others.filter((c) => c.color !== RESERVED_COLOR).map((c) => c.color),
+  );
+  const rest = others.map((c) => {
+    if (c.color !== RESERVED_COLOR) return c;
+    const next = SELECTABLE_COLORS.find((k) => !used.has(k)) ?? "slate";
+    used.add(next);
+    return { ...c, color: next };
+  });
+
+  return [pinned, ...rest];
+}
 
 // ── 이벤트 (시간은 자정 기준 분 단위로 저장 — 그리드 계산 단순화) ──
 export interface EventItem {

@@ -1,7 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { CalendarInfo, ColorKey, COLORS, EventItem } from "@/lib/types";
+import {
+  CalendarInfo,
+  ColorKey,
+  COLORS,
+  EventItem,
+  PROTECTED_CALENDAR_ID,
+  RESERVED_COLOR,
+  SELECTABLE_COLORS,
+} from "@/lib/types";
 import { uid } from "@/lib/storage";
 import MiniCalendar from "./MiniCalendar";
 
@@ -33,9 +41,11 @@ export default function CalendarSidebar({
 
   const addCalendar = () => {
     if (!newName.trim()) return;
+    // 예약 색은 "공부 가능 시간" 전용 — 어떤 경로로도 새 캘린더에 들어가지 않는다
+    const color = newColor === RESERVED_COLOR ? "sky" : newColor;
     setCalendars((prev) => [
       ...prev,
-      { id: uid(), name: newName.trim(), color: newColor, visible: true },
+      { id: uid(), name: newName.trim(), color, visible: true },
     ]);
     setNewName("");
     setAdding(false);
@@ -87,7 +97,7 @@ export default function CalendarSidebar({
               className="rounded-md border border-border bg-white px-2 py-1.5 text-xs outline-none focus:ring-2 focus:ring-primary"
             />
             <div className="flex flex-wrap gap-1.5">
-              {(Object.keys(COLORS) as ColorKey[]).map((c) => (
+              {SELECTABLE_COLORS.map((c) => (
                 <button
                   key={c}
                   onClick={() => setNewColor(c)}
@@ -98,6 +108,10 @@ export default function CalendarSidebar({
                 />
               ))}
             </div>
+            <p className="text-[10px] leading-snug text-gray-400">
+              {COLORS[RESERVED_COLOR].name} 색은 &ldquo;공부 가능 시간&rdquo;
+              전용입니다.
+            </p>
             <button
               onClick={addCalendar}
               disabled={!newName.trim()}
@@ -111,6 +125,7 @@ export default function CalendarSidebar({
         <ul className="flex flex-col">
           {calendars.map((c) => {
             const count = events.filter((e) => e.calendarId === c.id).length;
+            const locked = c.id === PROTECTED_CALENDAR_ID;
             return (
               <li
                 key={c.id}
@@ -133,13 +148,23 @@ export default function CalendarSidebar({
                   {c.name}
                 </span>
                 <span className="text-[10px] text-gray-300">{count}</span>
-                <button
-                  onClick={() => onDeleteCalendar(c.id)}
-                  className="hidden text-xs text-gray-300 hover:text-red-400 group-hover:block"
-                  aria-label="캘린더 삭제"
-                >
-                  ✕
-                </button>
+                {locked ? (
+                  <span
+                    className="hidden text-[10px] text-gray-300 group-hover:block"
+                    title="고정된 캘린더 · 삭제할 수 없습니다"
+                    aria-label="고정된 캘린더 · 삭제할 수 없습니다"
+                  >
+                    🔒
+                  </span>
+                ) : (
+                  <button
+                    onClick={() => onDeleteCalendar(c.id)}
+                    className="hidden text-xs text-gray-300 hover:text-red-400 group-hover:block"
+                    aria-label="캘린더 삭제"
+                  >
+                    ✕
+                  </button>
+                )}
               </li>
             );
           })}

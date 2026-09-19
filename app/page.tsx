@@ -7,6 +7,8 @@ import {
   DEFAULT_CALENDARS,
   EventItem,
   LegacyScheduleItem,
+  normalizeCalendars,
+  PROTECTED_CALENDAR_ID,
 } from "@/lib/types";
 import {
   addDays,
@@ -33,10 +35,9 @@ type PendingDelete =
   | { kind: "calendar"; id: string };
 
 export default function CalendarApp() {
-  const [calendars, setCalendars, calLoaded] = useLocalState<CalendarInfo[]>(
-    KEYS.calendars,
-    DEFAULT_CALENDARS,
-  );
+  const [storedCalendars, setStoredCalendars, calLoaded] = useLocalState<
+    CalendarInfo[]
+  >(KEYS.calendars, DEFAULT_CALENDARS);
   const [events, setEvents, evLoaded] = useLocalState<EventItem[]>(
     KEYS.events,
     [],
@@ -50,6 +51,20 @@ export default function CalendarApp() {
 
   // localStorage 로드 완료 여부 = 마운트 완료 여부 (하이드레이션 불일치 방지)
   const mounted = evLoaded && calLoaded;
+
+  // 저장된 목록에 불변 규칙(보호 캘린더 고정 · 예약 색)을 적용한 표시용 목록.
+  // 읽기와 쓰기 양쪽을 normalizeCalendars로 감싸 두면 예전 데이터도 그대로 교정된다.
+  const calendars = useMemo(
+    () => normalizeCalendars(storedCalendars),
+    [storedCalendars],
+  );
+  const setCalendars = useCallback(
+    (fn: (prev: CalendarInfo[]) => CalendarInfo[]) =>
+      setStoredCalendars((prev) =>
+        normalizeCalendars(fn(normalizeCalendars(prev))),
+      ),
+    [setStoredCalendars],
+  );
 
   // v1 스케줄 데이터 1회 마이그레이션 — localStorage(외부 시스템)에서 읽어오는 의도된 패턴
   useEffect(() => {
@@ -145,12 +160,15 @@ export default function CalendarApp() {
   // ── CRUD ──
   const createEvent = useCallback(
     (date: string, startMin = 9 * 60, endMin = 10 * 60) => {
-      const firstVisible =
-        calendars.find((c) => c.visible) ?? calendars[0];
-      if (!firstVisible) return;
+      // "공부 가능 시간"이 맨 위로 고정됐어도 새 일정의 기본값은 일반 캘린더다
+      const target =
+        calendars.find((c) => c.id !== PROTECTED_CALENDAR_ID && c.visible) ??
+        calendars.find((c) => c.id !== PROTECTED_CALENDAR_ID) ??
+        calendars[0];
+      if (!target) return;
       const ev: EventItem = {
         id: uid(),
-        calendarId: firstVisible.id,
+        calendarId: target.id,
         title: "",
         date,
         startMin,
@@ -179,6 +197,8 @@ export default function CalendarApp() {
   }, []);
 
   const requestDeleteCalendar = useCallback((id: string) => {
+    // 보호 캘린더는 삭제 요청 자체를 받지 않는다
+    if (id === PROTECTED_CALENDAR_ID) return;
     setPendingDelete({ kind: "calendar", id });
   }, []);
 
@@ -196,6 +216,10 @@ export default function CalendarApp() {
       });
     } else {
       const calId = pendingDelete.id;
+      if (calId === PROTECTED_CALENDAR_ID) {
+        setPendingDelete(null);
+        return;
+      }
       setCalendars((prev) => prev.filter((c) => c.id !== calId));
       setEvents((prev) => prev.filter((e) => e.calendarId !== calId));
       setSelectedId((cur) =>
@@ -312,6 +336,7 @@ export default function CalendarApp() {
           targets.length === 1 ? "삭제" : `${targets.length}개 삭제`,
       };
     }
+    if (pendingDelete.id === PROTECTED_CALENDAR_ID) return null;
     const cal = calendars.find((c) => c.id === pendingDelete.id);
     if (!cal) return null;
     const inCal = events.filter((e) => e.calendarId === cal.id);
