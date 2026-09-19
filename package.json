@@ -1,0 +1,17 @@
+{
+  "name": "fearless-basic-learning",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "node --test --no-warnings=MODULE_TYPELESS_PACKAGE_JSON \"tests/*.test.mjs\""
+  },
+  "dependencies": {
+    "next": "15.5.12",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  }
+}

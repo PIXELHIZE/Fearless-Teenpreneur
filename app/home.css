@@ -1,0 +1,241 @@
+.home-hero {
+  margin-bottom: 18px;
+}
+
+.home-hero h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.home-hero p {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: var(--text-sub);
+}
+
+.section-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+  margin: 22px 0 10px;
+}
+
+.lesson-list {
+  display: grid;
+  gap: 10px;
+}
+
+.lesson-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: transform 0.12s ease;
+}
+
+.lesson-item:active {
+  transform: scale(0.99);
+  background: var(--surface-2);
+}
+
+.lesson-icon {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.tone-blue {
+  background: #e8efff;
+  color: #2a55d6;
+}
+
+.tone-violet {
+  background: #f0eaff;
+  color: #6b3fd4;
+}
+
+.tone-amber {
+  background: #fff2df;
+  color: #b4711a;
+}
+
+.tone-green {
+  background: #e6f7ec;
+  color: #14803c;
+}
+
+.lesson-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.lesson-body strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.lesson-body span {
+  display: block;
+  margin-top: 3px;
+  font-size: 13px;
+  color: var(--text-sub);
+}
+
+.lesson-count {
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.upcoming-list {
+  display: grid;
+  gap: 10px;
+}
+
+.upcoming-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 16px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-2);
+  color: var(--text-sub);
+}
+
+.upcoming-item strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  color: #8b93a3;
+}
+
+.upcoming-item span {
+  display: block;
+  margin-top: 3px;
+  font-size: 12.5px;
+}
+
+.badge-soon {
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #e7eaf1;
+  color: #78808f;
+}
+
+/* ---------- OX 결과 화면 ---------- */
+
+.review-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.review-item {
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: 14px;
+  padding: 14px;
+  background: var(--surface);
+}
+
+.review-item.ok {
+  border-left-color: var(--ok);
+  background: #f6fdf8;
+}
+
+.review-item.ng {
+  border-left-color: var(--ng);
+  background: #fff8f8;
+}
+
+.review-item.skip {
+  border-left-color: #9aa2b1;
+  background: var(--surface-2);
+}
+
+.review-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.review-order {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.review-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+
+.review-mark.ok {
+  background: var(--ok-soft);
+  color: #147a3a;
+}
+
+.review-mark.ng {
+  background: var(--ng-soft);
+  color: #c0272c;
+}
+
+.review-mark.skip {
+  background: #e7eaf1;
+  color: #5f6875;
+}
+
+.review-question {
+  margin: 8px 0 0;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.review-answers {
+  display: flex;
+  gap: 14px;
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--text-sub);
+}
+
+.review-answers strong {
+  color: var(--text);
+  font-size: 13.5px;
+}
+
+.review-explain {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #6b5a00;
+  background: #fff7e6;
+  border-radius: 10px;
+  padding: 9px 11px;
+}
