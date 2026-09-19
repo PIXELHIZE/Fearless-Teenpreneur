@@ -20,6 +20,7 @@ import {
   toDateStr,
   todayStr,
 } from "@/lib/date";
+import { useGoogleSync } from "@/lib/google/sync";
 import CalendarSidebar from "@/components/calendar/CalendarSidebar";
 import WeekView from "@/components/calendar/WeekView";
 import MonthView from "@/components/calendar/MonthView";
@@ -107,6 +108,15 @@ export default function CalendarApp() {
   const visibleEvents = useMemo(
     () => events.filter((e) => calendarMap.get(e.calendarId)?.visible !== false),
     [events, calendarMap],
+  );
+
+  // Google 동기화 대상은 visibleEvents가 아니라 events 전체다.
+  // 캘린더를 숨기는 것은 보기 설정일 뿐인데, 숨긴 일정을 빼고 비교하면
+  // 그것들이 Google에서 삭제된다.
+  const { link: googleLink, sync: googleSync } = useGoogleSync(
+    events,
+    calendarMap,
+    mounted,
   );
 
   const focusDate = fromDateStr(focus);
@@ -374,6 +384,8 @@ export default function CalendarApp() {
         setCalendars={setCalendars}
         events={events}
         onDeleteCalendar={requestDeleteCalendar}
+        googleLink={googleLink}
+        googleSync={googleSync}
       />
 
       <div className="flex min-w-0 flex-1 flex-col">

@@ -6,6 +6,9 @@ export const KEYS = {
   schedules: "ft.schedules", // v1 레거시 — 마이그레이션 전용
   events: "ft.events",
   calendars: "ft.calendars",
+  // Google 연동 (Apps Script 웹앱 — lib/google/config.ts 참고)
+  gcalEndpoint: "ft.gcal.endpoint", // 배포 URL + 비밀 값
+  gcalLinks: "ft.gcal.links", // 로컬 일정 id → Google 일정 id 대응표
 } as const;
 
 export function uid(): string {

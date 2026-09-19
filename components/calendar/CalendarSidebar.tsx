@@ -11,8 +11,11 @@ import {
 } from "@/lib/types";
 import { dotStyle, isTooSimilar } from "@/lib/color";
 import { uid } from "@/lib/storage";
+import { LinkState } from "@/lib/google/config";
+import { SyncState } from "@/lib/google/sync";
 import MiniCalendar from "./MiniCalendar";
 import ColorPicker from "./ColorPicker";
+import GoogleSyncPanel from "./GoogleSyncPanel";
 
 interface Props {
   focus: string;
@@ -21,6 +24,8 @@ interface Props {
   setCalendars: (fn: (prev: CalendarInfo[]) => CalendarInfo[]) => void;
   events: EventItem[];
   onDeleteCalendar: (id: string) => void;
+  googleLink: LinkState;
+  googleSync: SyncState;
 }
 
 export default function CalendarSidebar({
@@ -30,6 +35,8 @@ export default function CalendarSidebar({
   setCalendars,
   events,
   onDeleteCalendar,
+  googleLink,
+  googleSync,
 }: Props) {
   const [adding, setAdding] = useState(false);
   const [newName, setNewName] = useState("");
@@ -178,6 +185,10 @@ export default function CalendarSidebar({
             );
           })}
         </ul>
+      </div>
+
+      <div className="border-t border-border p-3">
+        <GoogleSyncPanel link={googleLink} sync={googleSync} />
       </div>
 
       <div className="border-t border-border p-3">
