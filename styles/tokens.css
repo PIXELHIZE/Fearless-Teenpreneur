@@ -1,0 +1,92 @@
+:root {
+  color-scheme: light;
+
+  /* 바탕은 흰색, 글자는 진한 남빛 잉크. 코발트 블루가 대표색이고
+     초록(정답·성장)·노랑(에너지)·코랄(오답·주의)·퍼플(AI)이 보조색이다. */
+  --background: #ffffff;
+  --foreground: #1b1d2a;
+  --card: #ffffff;
+  --card-foreground: #1b1d2a;
+  --popover: #ffffff;
+  --popover-foreground: #1b1d2a;
+  --primary: #1b1d2a;
+  --primary-foreground: #ffffff;
+  --primary-deep: #07080f;
+  --secondary: #f3f5fa;
+  --secondary-foreground: #1b1d2a;
+  --muted: #f3f5fa;
+  --muted-foreground: #6f7590;
+  --border: #e6e9f2;
+  --input: #cbd1e0;
+
+  --brand: #3b6cff;
+  --brand-deep: #2a52d9;
+  --brand-soft: #e9efff;
+  --brand-foreground: #ffffff;
+  --brand-hover: #2f5df0;
+  --accent: #e9efff;
+  --accent-foreground: #2a52d9;
+  --ring: #3b6cff;
+
+  --ok: #3dbe5b;
+  --ok-deep: #2e9c47;
+  --ok-soft: #e4f7e9;
+  --ok-ink: #1e7a35;
+
+  --sun: #ffc530;
+  --sun-deep: #e0a800;
+  --sun-soft: #fff6d6;
+  --sun-ink: #8a6400;
+
+  --coral: #ff5c6c;
+  --coral-deep: #d9414f;
+  --coral-soft: #ffe9ec;
+  --coral-ink: #b8303d;
+
+  --grape: #8b5cf6;
+  --grape-deep: #6d3fe0;
+  --grape-soft: #f0eaff;
+  --grape-ink: #5a2fc9;
+
+  --flame: #ff8a3d;
+  --flame-soft: #ffeedf;
+  --flame-ink: #b85a17;
+
+  --destructive: #d9414f;
+
+  --radius: 1rem;
+  --radius-control: 1rem;
+  --radius-surface: 1.5rem;
+  --radius-overlay: 1.75rem;
+  --radius-pill: 999px;
+
+  --overlay-scrim: rgb(27 29 42 / 42%);
+  --overlay-padding: 1.5rem;
+  --switch-off: #cbd1e0;
+  --switch-thumb: #ffffff;
+
+  --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem; --space-5: 1.25rem;
+  --space-6: 1.5rem; --space-8: 2rem; --space-12: 3rem; --space-16: 4rem;
+
+  --font-ui: "Pretendard Variable", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+  --text-display: 3rem; --text-title: 1.75rem; --text-section: 1.25rem; --text-body: 1rem;
+  --text-support: .875rem; --text-caption: .75rem; --leading-body: 1.625;
+  --size-touch: 3rem; --size-primary-mobile: 3.25rem;
+  --page-gutter: 1.25rem;
+
+  --motion-press: 100ms;
+  --motion-state: 180ms;
+  --motion-reveal: 260ms;
+  --motion-surface: 280ms;
+  --motion-sheet-enter: 420ms;
+  --motion-sheet-exit: 280ms;
+  --motion-flip: 380ms;
+  --easing-sheet: cubic-bezier(.22, 1, .36, 1);
+  --easing-standard: cubic-bezier(.2, 0, 0, 1);
+  --easing-pop: cubic-bezier(.34, 1.56, .64, 1);
+  --shadow-overlay: 0 20px 60px rgb(27 29 42 / 16%);
+}
+@media (max-width: 359px) { :root { --page-gutter: 1rem; } }
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-press: 0ms; --motion-state: 0ms; --motion-reveal: 0ms; --motion-surface: 0ms; --motion-sheet-enter: 0ms; --motion-sheet-exit: 0ms; --motion-flip: 0ms; }
+}
